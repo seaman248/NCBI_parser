@@ -30,4 +30,4 @@ This prog give the search term as process.argv[2] and write 20 abstract text fro
 	DONE
 </code>
 
-Open abstract.txt and ASDFASDFASDFEGHQENB!
+Open abstract.txt and read some abstract about you term ('cell' in this example)!
