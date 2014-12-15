@@ -1,7 +1,6 @@
 var request = require('request'); 
 var cheerio = require('cheerio');
 var fs = require('fs');
-//var urlFourSearch = 'http://www.ncbi.nlm.nih.gov/pubmed/?term=sdh';
 
 var get20Abstract = function(searchTerm, abstract){
 	var urlFourSearch = 'http://www.ncbi.nlm.nih.gov/pubmed/?term='+searchTerm;
