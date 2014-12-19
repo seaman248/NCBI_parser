@@ -25,6 +25,6 @@ module.exports = function(inputTxtFile, doneCb){
 			cb(null, cleanArr);
 		}],function (err, result) {
 			if (err) console.log(err);
-			doneCb(result);
+			doneCb(null, result);
 		});
 }

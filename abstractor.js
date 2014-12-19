@@ -18,7 +18,7 @@ module.exports = function(searchTerm, abstract){
 					else{
 						$ = cheerio.load(body);
 						var abstractText = $('abstracttext').text();
-						return abstract(abstractText);
+						return abstract(null, abstractText);
 					}
 				});
 			});
