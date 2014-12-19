@@ -2,7 +2,7 @@ var //getAbstracts = require('./get20abstract.js'),
 	async = require('async'),
 	fs = require('fs');
 
-module.exports = function(doneCb, inputTxtFile){
+module.exports = function(inputTxtFile, doneCb){
 	async.waterfall([
 		function (cb) {
 			fs.readFile(inputTxtFile, function (err, text) {
@@ -11,15 +11,20 @@ module.exports = function(doneCb, inputTxtFile){
 			});
 		},function (inputText, cb) {
 			var wArray = inputText.split(' ');
-			cb(wArray.map(function (item) {
-				if(item.length >=5) return item.replace(',', '').replace(')', '').replace('.', '').replace('(', ''); 
-				//Возвращаем строки более 5 символов в длину и без лишних символов
-				else return null;
-				//А если они меньше 5 символов, то null
-			})); 
+			var cleanArr = [];
+			for (var i = 0; i < wArray.length; i++) {
+				if(wArray[i].length >= 5){
+					cleanArr.push(wArray[i]
+						.replace(',', '')
+						.replace(')', '')
+						.replace('.', '')
+						.replace('-', '')
+						.replace('(', ''));
+				}
+			};
+			cb(null, cleanArr);
 		}],function (err, result) {
 			if (err) console.log(err);
-			//console.log(result);
 			doneCb(result);
 		});
 }
