@@ -1,9 +1,10 @@
 var request = require('request'); 
 var cheerio = require('cheerio');
 var fs = require('fs');
-//var urlFourSearch = 'http://www.ncbi.nlm.nih.gov/pubmed/?term=sdh';
 
-var get20Abstract = function(searchTerm, abstract){
+
+
+module.exports = function(searchTerm, abstract){
 	var urlFourSearch = 'http://www.ncbi.nlm.nih.gov/pubmed/?term='+searchTerm;
 	request(urlFourSearch, function (err, res, body) {
 		if (err){console.log(err);}
@@ -23,17 +24,5 @@ var get20Abstract = function(searchTerm, abstract){
 			});
 		}
 	});
-}	
-// test
-// get20Abstract(process.argv[2], function(text){
-// 	console.log(text);
-// });
+}
 
-get20Abstract(process.argv[2], function(text){
-	fs.appendFile('abstracts.txt', text, function(err){
-		if(err){console.log(err);}
-		else{
-			console.log('done');
-		}
-	});
-});
