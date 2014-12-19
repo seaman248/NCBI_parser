@@ -26,3 +26,14 @@ module.exports = function(searchTerm, abstract){
 	});
 }
 
+<<<<<<< HEAD:abstractor.js
+=======
+get20Abstract(process.argv[2], function(text){
+	fs.appendFile('abstracts.txt', text, function(err){
+		if(err){console.log(err);}
+		else{
+			console.log('done');
+		}
+	});
+});
+>>>>>>> 78cd49dae96e34f8830fd57c0dd75826d0048e73:get20abstract.js
