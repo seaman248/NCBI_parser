@@ -1,33 +1,3 @@
-This prog give the search term as process.argv[2] and write 20 abstract text from NCBI Pubmed related with this term. 
+This program generate search words from inputText by generator module. And make request to get abstracts related with search words by abstractor module.
 
-<h4>Example</h4>
-<code>
-	node get20abstract.js cell
-</code>
 
-<h4>Result</h4>
-
-<code>
-	DONE
-	DONE
-	DONE
-	DONE
-	DONE
-	DONE
-	DONE
-	DONE
-	DONE
-	DONE
-	DONE
-	DONE
-	DONE
-	DONE
-	DONE
-	DONE
-	DONE
-	DONE
-	DONE
-	DONE
-</code>
-
-Open abstract.txt and read some abstract about you term ('cell' in this example)!
