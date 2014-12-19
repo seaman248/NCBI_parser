@@ -2,10 +2,10 @@ var //getAbstracts = require('./get20abstract.js'),
 	async = require('async'),
 	fs = require('fs');
 
-module.exports = function(doneCb){
+module.exports = function(doneCb, inputTxtFile){
 	async.waterfall([
 		function (cb) {
-			fs.readFile('inputText.txt', function (err, text) {
+			fs.readFile(inputTxtFile, function (err, text) {
 				if (err) console.log(err);
 				cb(null, text.toString())
 			});
