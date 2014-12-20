@@ -12,7 +12,7 @@ var getAbstract = require('./abstractor.js'),
 // 	console.log(wordArr);
 // });
 generator('inputText.txt', function (err, searchWords) {
-	for (var i = 100; i < 200; i++) {
+	for (var i = 0; i < 200; i++) {
 		getAbstract(searchWords[i], function (err, abstract) {
 			fs.appendFile('output.txt', abstract ,function (err) {
 				if (err) console.log(err);
