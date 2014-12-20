@@ -3,8 +3,8 @@ var https = require('https'),
 	fs = require('fs');
 
 //dubug vars
-var yaKey = 'trnsl.1.1.20141220T091458Z.f174efed90915cd2.ee1d8089ae0472f9813005eb1647a9f5985cbe6c';
-var bigTextLimit = 500;
+var yaKey = process.argv[2];
+var bigTextLimit = 250;
 var outputFile = 'translations.json'
 
 //translate function (Yandex API)
@@ -125,6 +125,6 @@ async.waterfall([
 		if (err) console.log(err);
 		fs.writeFile(outputFile, JSON.stringify(resArr), function (err) {
 			if (err) console.log(err);
-			console.log('Done!');
+			console.log('Done! ' + resArr.length);
 		});
 });
