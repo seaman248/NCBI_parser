@@ -3,8 +3,8 @@ var https = require('https'),
 	fs = require('fs');
 
 //dubug vars
-var yaKey = process.argv[2];
-var bigTextLimit = 250;
+var yaKey = 'trnsl.1.1.20141209T212612Z.19b578890e8a54e3.a219b05632b3e6de201436b7e14dd01bcaf90bd6';
+var bigTextLimit = 5;
 var outputFile = 'translations.json'
 
 //translate function (Yandex API)
@@ -59,7 +59,8 @@ if (![].includes) {
   }
 }
 async.waterfall([
-		function writeBigTextFile (doneCB) {
+		function readBigTextFile (doneCB) {
+			console.log('Read big text...');
 			fs.readFile('output.txt', function (err, text) {
 				if (err) console.log(err);
 				doneCB(null, text.toString().split('. ', bigTextLimit));
@@ -75,6 +76,7 @@ async.waterfall([
 		// 	doneCB(null, cleanRepeatArr);
 		// },
 		function resultArrayInitialize (enArr, doneCB) {
+			console.log('Array initializating...');
 			var resultArrInitializing = [];
 			for (var i = 0; i < enArr.length; i++) {
 				var wordsArr = enArr[i].split(' ');
@@ -92,6 +94,7 @@ async.waterfall([
 			doneCB(null, resultArrInitializing);
 		},
 		function translateWords (resArr, doneCB) {
+			console.log('Translate words...');
 			async.map(resArr, function (item, thisDone) {
 				yaTranslate(yaKey, item.enW, 'en-ru', function (err, text) {
 					thisDone(null, text);
@@ -101,12 +104,14 @@ async.waterfall([
 			});			
 		},
 		function  (resArr, trWarr, doneCB) {
+			console.log('Add to result Array');
 			for (var i = 0; i < resArr.length; i++) {
 				resArr[i].ruW = trWarr[i];
 			};
 			doneCB(null, resArr);
 		},
 		function (resArr, doneCB) {
+			console.log('All text translate');
 			async.map(resArr, function (item, thisDone) {
 				yaTranslate(yaKey, item.en, 'en-ru', function (err, ru) {
 					thisDone(null, ru);
@@ -116,6 +121,7 @@ async.waterfall([
 			});			
 		},
 		function (resArr, translations, doneCB) {
+			console.log('Add to result Array');
 			for (var i = 0; i < resArr.length; i++) {
 				resArr[i].ru = translations[i];
 			};
