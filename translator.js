@@ -3,7 +3,7 @@ var https = require('https'),
 	fs = require('fs');
 
 //dubug vars
-var yaKey = 'trnsl.1.1.20141209T212612Z.19b578890e8a54e3.a219b05632b3e6de201436b7e14dd01bcaf90bd6';
+var yaKey = '';
 var bigTextLimit = 5;
 var outputFile = 'translations.json'
 
